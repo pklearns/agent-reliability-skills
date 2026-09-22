@@ -20,6 +20,10 @@ single output rejected by anything isn't reliable, it's unaudited.
 
 Every skill here is one countermeasure to that pattern.
 
+<!-- OPTIONAL: replace the paragraph above, or add below it, with your own account of how you
+     hit this. A concrete war story is the most persuasive thing in a repo like this, and it
+     should be in your voice, not a generic one. -->
+
 ---
 
 ## The five skills
