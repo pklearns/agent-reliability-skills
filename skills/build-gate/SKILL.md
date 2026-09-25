@@ -14,6 +14,22 @@ Repositories carry phantom "complete" statuses for months — a "backtest comple
 - **Different context than the generator.** If reviewing Claude Code work in chat, do not adopt the transcript's framing — re-derive what "done" means from the spec, then check the artifact against it. When more than one model is available, run the evaluator on a model different from the one that produced the work — stronger where available. The evaluator is never the generator.
 - **REJECT with reasons.** Every REJECT lists concrete, fixable gaps. A bare REJECT is useless to the next turn.
 
+## Gate self-test
+
+Before gating any real build, run the gate once against the planted-defect fixture in
+`fixtures/canary/` (next to this file). It must return FAIL.
+
+- `fixtures/canary/completion-claim.md` — a short completion claim asserting all tests pass.
+- `fixtures/canary/test-log.txt` — the test run behind that claim, showing 1 failing test.
+
+Run the check sequence below against the claim, using the log as the behavior evidence. The
+expected result is `REJECT`, naming the failing test. The canary is a self-test, not real
+work: skip the prior question and do not append it to the prior log.
+
+**If the gate returns PASS on the canary, the gate is blind — stop and report. Do not gate
+real work.** A gate that accepts "tests pass" over a log that says otherwise will PASS
+everything, and its verdicts on real builds are worthless until the cause is found.
+
 <!-- precommit-prior -->
 ## The user's prior (required before grading)
 
