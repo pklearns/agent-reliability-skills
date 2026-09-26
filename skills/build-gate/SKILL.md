@@ -68,14 +68,17 @@ Rules:
 4. Run the check they named in line 4 as part of step 2 or step 3 of the sequence below, and
    report its result explicitly, by name, whether or not it mattered to the verdict.
 5. The verdict must carry a **Prior vs. Verdict** line: `matched` / `the user was optimistic` /
-   `the user was pessimistic`.
+   `the user was pessimistic`, or `unanchored` if they declined the prior.
 6. **Append the run to the prior log before finishing** — `~/.claude/prior-log.md`, created
    if absent. Two lines, no more:
 
    ```
-   YYYY-MM-DD | <what was gated> | prior: <their call>/<confidence> | verdict: <PASS|REJECT|BLOCKED> | <matched|optimistic|pessimistic>
+   YYYY-MM-DD | <what was gated> | prior: <their call>/<confidence> | verdict: <PASS|REJECT|BLOCKED> | <matched|optimistic|pessimistic|unanchored>
    line 3: <their suspicion, verbatim> -> <PASS|FAIL|NOT CHECKED>
    ```
+
+   If the user declined the prior, the first line reads `prior: declined` and ends `unanchored`,
+   and the second reads `line 3: (declined) -> NOT CHECKED`.
 
    This skill has no memory between runs. Without the append, "Prior vs. Verdict" is a label
    produced once and discarded, and the calibration it promises never accumulates anywhere —
