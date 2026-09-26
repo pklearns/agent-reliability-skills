@@ -17,7 +17,7 @@ Repositories carry phantom "complete" statuses for months — a "backtest comple
 ## Gate self-test
 
 Before gating any real build, run the gate once against the planted-defect fixture in
-`fixtures/canary/` (next to this file). It must return FAIL.
+`fixtures/canary/` (next to this file). It must return `REJECT`.
 
 - `fixtures/canary/completion-claim.md` — a short completion claim asserting all tests pass.
 - `fixtures/canary/test-log.txt` — the test run behind that claim, showing 1 failing test.
